@@ -1,6 +1,7 @@
+#!/usr/bin/env bun
+
 import { program } from "commander";
 import { ParseFixedTimeStringFlow } from "./src/core/ParseFixedTimeStringFlow";
-import dayjs from "dayjs";
 
 program.argument("[]");
 program.parse();

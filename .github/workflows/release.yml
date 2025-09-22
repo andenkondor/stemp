@@ -20,7 +20,7 @@ jobs:
       - uses: oven-sh/setup-bun@v2
       - run: bun install
       - run: bun test
-      - run: bun build --compile --minify --sourcemap --target=bun-darwin-arm64 ./index.ts --outfile stemp
+      - run: bun build --minify --sourcemap --target=bun-darwin-arm64 ./index.ts --outfile stemp
 
       - name: Create tar.gz archive
         run: tar -czf stemp.tar.gz stemp
