@@ -30,9 +30,7 @@ export class TimeParser {
       unix: this.time.unix(),
       millis: this.time.valueOf(),
       utc: this.time.toISOString(),
-      relative: this.time.isBefore(this.now)
-        ? this.now.to(this.time)
-        : this.now.to(this.time),
+      relative: this.now.to(this.time),
     };
   }
 }
