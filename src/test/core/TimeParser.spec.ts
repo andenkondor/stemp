@@ -55,5 +55,17 @@ describe("TimeParser", () => {
       expect(parsedTime.iso).toBe("2025-09-22T14:28:09.000Z");
       expect(parsedTime.relative).toBe("a few seconds ago");
     });
+
+    test("invalid", () => {
+      expect(() => new TimeParser("abc", now).getParsedTime()).toThrow(
+        "invalid time provided",
+      );
+    });
+
+    test("empty", () => {
+      expect(() => new TimeParser("", now).getParsedTime()).toThrow(
+        "no time provided",
+      );
+    });
   });
 });

@@ -10,7 +10,7 @@ export class TimeParser {
 
   constructor(time: string, now?: Dayjs) {
     if (!time) {
-      throw new Error("cannot parse empty time");
+      throw new Error("no time provided");
     }
     this.now = now ?? dayjs();
 
@@ -20,6 +20,10 @@ export class TimeParser {
     }
 
     this.time = dayjs(time);
+
+    if (!this.time.isValid()) {
+      throw new Error("invalid time provided");
+    }
   }
 
   getParsedTime(): ParsedTime {
