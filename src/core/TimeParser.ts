@@ -5,6 +5,9 @@ import LocalizedFormat from "dayjs/plugin/LocalizedFormat";
 import timezonePlugin from "dayjs/plugin/timezone";
 import utcPlugin from "dayjs/plugin/utc";
 
+const UNIX_SECONDS_DIGIT_COUNT = 10;
+const LOCAL_TIMEZONE = "europe/berlin";
+
 extend(LocalizedFormat);
 extend(relativeTimePlugin);
 extend(utcPlugin);
@@ -22,7 +25,10 @@ export class TimeParser {
     }
 
     if (!isNaN(+time)) {
-      this.time = time.length === 10 ? dayjs.unix(+time) : dayjs(+time);
+      this.time =
+        time.length === UNIX_SECONDS_DIGIT_COUNT
+          ? dayjs.unix(+time)
+          : dayjs(+time);
       return;
     }
 
@@ -38,7 +44,7 @@ export class TimeParser {
       unix: this.time.unix(),
       millis: this.time.valueOf(),
       utc: this.time.toISOString(),
-      local: this.time.tz("europe/berlin").format("DD MMMM YYYY, HH:mm:ss"),
+      local: this.time.tz(LOCAL_TIMEZONE).format("DD MMMM YYYY, HH:mm:ss"),
       relative: this.now.to(this.time),
     };
   }
