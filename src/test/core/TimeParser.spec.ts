@@ -14,6 +14,7 @@ describe("TimeParser", () => {
       expect(parsedTime.unix).toBe(1758464889);
       expect(parsedTime.millis).toBe(1758464889000);
       expect(parsedTime.utc).toBe("2025-09-21T14:28:09.000Z");
+      expect(parsedTime.local).toBe("21 September 2025, 16:28:09");
       expect(parsedTime.relative).toBe("a day ago");
     });
 
@@ -26,6 +27,7 @@ describe("TimeParser", () => {
       expect(parsedTime.unix).toBe(1758464889);
       expect(parsedTime.millis).toBe(1758464889000);
       expect(parsedTime.utc).toBe("2025-09-21T14:28:09.000Z");
+      expect(parsedTime.local).toBe("21 September 2025, 16:28:09");
       expect(parsedTime.relative).toBe("a day ago");
     });
 
@@ -38,6 +40,7 @@ describe("TimeParser", () => {
       expect(parsedTime.unix).toBe(1758464889);
       expect(parsedTime.millis).toBe(1758464889000);
       expect(parsedTime.utc).toBe("2025-09-21T14:28:09.000Z");
+      expect(parsedTime.local).toBe("21 September 2025, 16:28:09");
       expect(parsedTime.relative).toBe("a day ago");
     });
 
@@ -50,6 +53,7 @@ describe("TimeParser", () => {
       expect(parsedTime.unix).toBe(1790087289);
       expect(parsedTime.millis).toBe(1790087289000);
       expect(parsedTime.utc).toBe("2026-09-22T14:28:09.000Z");
+      expect(parsedTime.local).toBe("22 September 2026, 16:28:09");
       expect(parsedTime.relative).toBe("in a year");
     });
 
@@ -62,6 +66,7 @@ describe("TimeParser", () => {
       expect(parsedTime.unix).toBe(1758551289);
       expect(parsedTime.millis).toBe(1758551289000);
       expect(parsedTime.utc).toBe("2025-09-22T14:28:09.000Z");
+      expect(parsedTime.local).toBe("22 September 2025, 16:28:09");
       expect(parsedTime.relative).toBe("a few seconds ago");
     });
 
