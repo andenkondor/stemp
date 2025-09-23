@@ -1,6 +1,6 @@
 import { Clipboard } from "./Clipboard";
-import { ParsedTimePrinter } from "./ParsedTimePrinter";
 import { TimeParser } from "./TimeParser";
+import { TimePrinter } from "./TimePrinter";
 
 export class ParseFixedTimeStringFlow {
   private readonly providedTimeString: string;
@@ -15,7 +15,7 @@ export class ParseFixedTimeStringFlow {
 
     const parsedTime = new TimeParser(timeWithBackup).getParsedTime();
 
-    new ParsedTimePrinter(parsedTime).print();
+    new TimePrinter(parsedTime).print();
 
     Clipboard.copy(parsedTime.unix);
   }
