@@ -1,5 +1,4 @@
-import type { Dayjs } from "dayjs";
-import dayjs, { extend } from "dayjs";
+import dayjs, { Dayjs, extend } from "dayjs";
 import type { ParsedTime } from "./ParsedTime";
 import relativeTimePlugin from "dayjs/plugin/relativeTime";
 extend(relativeTimePlugin);
@@ -8,11 +7,11 @@ export class TimeParser {
   private readonly time: Dayjs;
   private readonly now: Dayjs;
 
-  constructor(time: string, now?: Dayjs) {
+  constructor(time: string, now?: Date) {
     if (!time) {
       throw new Error("no time provided");
     }
-    this.now = now ?? dayjs();
+    this.now = dayjs(now);
 
     if (!isNaN(+time)) {
       this.time = time.length === 10 ? dayjs.unix(+time) : dayjs(+time);

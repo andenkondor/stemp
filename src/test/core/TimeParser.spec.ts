@@ -6,7 +6,10 @@ describe("TimeParser", () => {
   const now = dayjs("2025-09-22T14:28:09.000Z");
   describe("getParsedTime()", () => {
     test("unix", () => {
-      const parsedTime = new TimeParser("1758464889", now).getParsedTime();
+      const parsedTime = new TimeParser(
+        "1758464889",
+        now.toDate(),
+      ).getParsedTime();
 
       expect(parsedTime.unix).toBe(1758464889);
       expect(parsedTime.millis).toBe(1758464889000);
@@ -15,7 +18,10 @@ describe("TimeParser", () => {
     });
 
     test("millis", () => {
-      const parsedTime = new TimeParser("1758464889000", now).getParsedTime();
+      const parsedTime = new TimeParser(
+        "1758464889000",
+        now.toDate(),
+      ).getParsedTime();
 
       expect(parsedTime.unix).toBe(1758464889);
       expect(parsedTime.millis).toBe(1758464889000);
@@ -26,7 +32,7 @@ describe("TimeParser", () => {
     test("utc", () => {
       const parsedTime = new TimeParser(
         "2025-09-21T14:28:09.000Z",
-        now,
+        now.toDate(),
       ).getParsedTime();
 
       expect(parsedTime.unix).toBe(1758464889);
@@ -38,7 +44,7 @@ describe("TimeParser", () => {
     test("future date", () => {
       const parsedTime = new TimeParser(
         now.add(1, "year").toISOString(),
-        now,
+        now.toDate(),
       ).getParsedTime();
 
       expect(parsedTime.unix).toBe(1790087289);
@@ -48,7 +54,10 @@ describe("TimeParser", () => {
     });
 
     test("now", () => {
-      const parsedTime = new TimeParser(now.toISOString(), now).getParsedTime();
+      const parsedTime = new TimeParser(
+        now.toISOString(),
+        now.toDate(),
+      ).getParsedTime();
 
       expect(parsedTime.unix).toBe(1758551289);
       expect(parsedTime.millis).toBe(1758551289000);
@@ -57,13 +66,13 @@ describe("TimeParser", () => {
     });
 
     test("invalid", () => {
-      expect(() => new TimeParser("abc", now).getParsedTime()).toThrow(
+      expect(() => new TimeParser("abc", now.toDate()).getParsedTime()).toThrow(
         "invalid time provided",
       );
     });
 
     test("empty", () => {
-      expect(() => new TimeParser("", now).getParsedTime()).toThrow(
+      expect(() => new TimeParser("", now.toDate()).getParsedTime()).toThrow(
         "no time provided",
       );
     });
