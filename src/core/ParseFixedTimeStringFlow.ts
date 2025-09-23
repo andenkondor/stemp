@@ -1,4 +1,4 @@
-import { $ } from "bun";
+import { Clipboard } from "./Clipboard";
 import { ParsedTimePrinter } from "./ParsedTimePrinter";
 import { TimeParser } from "./TimeParser";
 
@@ -16,6 +16,7 @@ export class ParseFixedTimeStringFlow {
     const parsedTime = new TimeParser(timeWithBackup).getParsedTime();
 
     new ParsedTimePrinter(parsedTime).print();
-    await $`echo -n ${timeWithBackup} | pbcopy`;
+
+    Clipboard.copy(parsedTime.unix);
   }
 }
