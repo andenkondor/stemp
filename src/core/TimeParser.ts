@@ -30,7 +30,7 @@ export class TimeParser {
     return {
       unix: this.time.unix(),
       millis: this.time.valueOf(),
-      iso: this.time.toISOString(),
+      utc: this.time.toISOString(),
       relative: this.time.isBefore(this.now)
         ? this.now.to(this.time)
         : this.now.to(this.time),

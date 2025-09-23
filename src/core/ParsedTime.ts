@@ -1,6 +1,6 @@
 export type ParsedTime = {
   relative: string;
-  iso: string;
+  utc: string;
   unix: number;
   millis: number;
 };
