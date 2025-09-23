@@ -4,6 +4,7 @@ import relativeTimePlugin from "dayjs/plugin/relativeTime";
 import LocalizedFormat from "dayjs/plugin/LocalizedFormat";
 import timezonePlugin from "dayjs/plugin/timezone";
 import utcPlugin from "dayjs/plugin/utc";
+import calendar from "dayjs/plugin/calendar";
 
 const UNIX_SECONDS_DIGIT_COUNT = 10;
 const LOCAL_TIMEZONE = "europe/berlin";
@@ -12,6 +13,7 @@ extend(LocalizedFormat);
 extend(relativeTimePlugin);
 extend(utcPlugin);
 extend(timezonePlugin);
+extend(calendar);
 
 export class TimeParser {
   private readonly time: Dayjs;
@@ -45,6 +47,9 @@ export class TimeParser {
       millis: this.time.valueOf(),
       utc: this.time.toISOString(),
       local: this.time.tz(LOCAL_TIMEZONE).format("DD MMMM YYYY, HH:mm:ss"),
+      calendar: this.time.tz(LOCAL_TIMEZONE).calendar(this.now, {
+        sameElse: "noop",
+      }),
       relative: this.now.to(this.time),
     };
   }
