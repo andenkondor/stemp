@@ -1,7 +1,6 @@
 import dayjs, { Dayjs, extend } from "dayjs";
 import type { ParsedTime } from "./ParsedTime";
 import relativeTimePlugin from "dayjs/plugin/relativeTime";
-import LocalizedFormat from "dayjs/plugin/LocalizedFormat";
 import timezonePlugin from "dayjs/plugin/timezone";
 import utcPlugin from "dayjs/plugin/utc";
 import calendar from "dayjs/plugin/calendar";
@@ -9,7 +8,6 @@ import calendar from "dayjs/plugin/calendar";
 const UNIX_SECONDS_DIGIT_COUNT = 10;
 const LOCAL_TIMEZONE = "europe/berlin";
 
-extend(LocalizedFormat);
 extend(relativeTimePlugin);
 extend(utcPlugin);
 extend(timezonePlugin);
